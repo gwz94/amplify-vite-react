@@ -4,12 +4,18 @@ import { generateClient } from "aws-amplify/data";
 import { Authenticator } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import DefaultStorageManagerExample from "./components/StorageManager.tsx";
+import {uploadData} from 'aws-amplify/storage';
 
 
 const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [file, setFile] = useState();
+
+  const handleChange = (event: any) => {
+    setFile(event.target.files[0])
+  }
 
   function deleteTodo(id: string) {
     client.models.Todo.delete({id})
@@ -26,6 +32,11 @@ function App() {
 
   return (
     <>
+    <input type="file" onChange={handleChange}/>
+    <button onClick={() => uploadData({
+      path: `photos/${file.name}`,
+      data: file
+    })}>Upload</button>
     <DefaultStorageManagerExample />
     <Authenticator socialProviders={["apple",  "facebook", "google"]}>
       {({signOut, user}) => (      
