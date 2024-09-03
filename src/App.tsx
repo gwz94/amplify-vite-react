@@ -36,6 +36,9 @@ function App() {
     <button onClick={() => uploadData({
       path: `photos/${file.name}`,
       data: file
+      options: {
+        bucket: "amplifyTeamDrive"
+      }
     })}>Upload</button>
     <DefaultStorageManagerExample />
     <Authenticator socialProviders={["apple",  "facebook", "google"]}>
