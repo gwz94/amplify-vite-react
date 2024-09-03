@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { Authenticator } from "@aws-amplify/ui-react";
-import '@aws-amplify/ui-react/styles.css'
+import '@aws-amplify/ui-react/styles.css';
+import DefaultStorageManagerExample from "./components/StorageManager.tsx";
+
 
 const client = generateClient<Schema>();
 
@@ -23,6 +25,8 @@ function App() {
   }
 
   return (
+    <>
+    <DefaultStorageManagerExample />
     <Authenticator socialProviders={["apple",  "facebook", "google"]}>
       {({signOut, user}) => (      
         <main>
@@ -44,6 +48,7 @@ function App() {
       </main>)}
 
     </Authenticator>
+    </>
   );
 }
 
