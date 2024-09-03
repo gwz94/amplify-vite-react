@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <Authenticator>
+    <Authenticator socialProviders={["apple",  "facebook", "google"]}>
       {({signOut, user}) => (      
         <main>
       <h1>{user?.signInDetails?.loginId}'s todos</h1>
