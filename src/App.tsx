@@ -35,7 +35,7 @@ function App() {
     <input type="file" onChange={handleChange}/>
     <button onClick={() => uploadData({
       path: `photos/${file.name}`,
-      data: file
+      data: file,
       options: {
         bucket: "amplifyTeamDrive"
       }
